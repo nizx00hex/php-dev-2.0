@@ -1,15 +1,18 @@
 <?php
 
-class Database {
+class Database
+{
     private static ?PDO $connection = null;
 
-    public static function connect(): PDO {
-        if(self::$connection === null) {
+    public static function getConnection(): PDO
+    {
+        if (self::$connection === null) {
+
             $config = require __DIR__ . '/../config/database.php';
 
             $dsn = "mysql:host={$config['host']};"
-                . "dbname={$config['dbname']};"
-                . "charset={$config['charset']}";
+                 . "dbname={$config['dbname']};"
+                 . "charset={$config['charset']}";
 
             self::$connection = new PDO(
                 $dsn,
@@ -22,7 +25,7 @@ class Database {
                 ]
             );
         }
+
         return self::$connection;
     }
-
 }

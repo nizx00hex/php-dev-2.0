@@ -2,17 +2,44 @@
 
 require_once __DIR__ . '/../includes/init.php';
 
-// try {
+try {
+    $pdo = Database::getConnection();
 
-    $db1 = Database::connect();
-    $db = Database::connect();
+    $message =  $pdo->query('SELECT DATABASE()')->fetchColumn();
+    $status = 'success';
+} catch (PDOException $e) {
+    error_log($e->getMessage());
 
-    var_dump($db1 === $db);
-//     echo "Database connected successfully!";
+    http_response_code(500);
 
-// } catch (PDOException $e) {
+    $message = 'Database connection failed.';
+    $status = "error";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-//     error_log($e->getMessage());
+    <title>EliteFort</title>
 
-//     echo "Database connection failed.";
-// }
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+    <main class="container">
+        <h1>EliteFort<span>.</span></h1>
+
+        <p>Connect. Share. Discover.</p>
+
+        <div class="status <?= $status ?>">
+            <?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?>
+        </div>
+
+        <small>Phase 01 — Project Initialization</small>
+    </main>
+
+</body>
+</html>

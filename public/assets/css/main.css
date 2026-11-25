@@ -1,0 +1,53 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.container {
+    width: min(90%, 420px);
+    padding: 32px;
+    border: 1px solid #262626;
+    border-radius: 18px;
+    background: #0d0d0d;
+}
+
+h1 {
+    margin: 0;
+    font-size: 36px;
+    letter-spacing: -2px;
+}
+
+h1 span {
+    color: #ff6010;
+}
+
+p, small {
+    color: #a3a3a3;
+}
+
+.status {
+    padding: 14px;
+    margin: 24px 0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.success {
+    background: #052e16;
+    color: #86efac;
+}
+
+.error {
+    background: #450a0a;
+    color: #fca5a5;
+}
